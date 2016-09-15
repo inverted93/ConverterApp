@@ -30,22 +30,46 @@ public class MainActivity extends AppCompatActivity {
 
         Scanner sc = new Scanner(text);
 
+        String first="";
+        String second="";
 
-        String first = sc.next();
+        try{
 
-        if(sc.hasNext()){
 
-            String second = sc.next();
+            if(sc.hasNext()){
 
+                first = sc.next();
+                double firstDouble = Double.parseDouble(first);
+
+                if(sc.hasNext()){
+
+                    second = sc.next();
+
+                    if()
+
+
+
+
+
+                    double res = pound(firstDouble);
+
+                    info.setText("Kg " + res);
+
+                    radioSet();
+
+                }else{
+
+                }
+
+            }
+
+        }catch(NumberFormatException e){
+             e.printStackTrace();
         }
 
-        double firstDouble = Double.parseDouble(first);
 
-        double res = pound(firstDouble);
 
-        info.setText("Kg " + res);
 
-        radioSet();
 
 
 
