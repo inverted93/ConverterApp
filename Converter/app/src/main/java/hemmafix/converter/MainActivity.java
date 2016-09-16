@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,31 +34,46 @@ public class MainActivity extends AppCompatActivity {
         String first="";
         String second="";
 
+        DecimalFormat df = new DecimalFormat("#.###");
+
         try{
 
 
             if(sc.hasNext()){
 
-                first = sc.next();
-                double firstDouble = Double.parseDouble(first);
+                first = sc.next();//Hämtar det första talet
 
-                if(sc.hasNext()){
-
-                    second = sc.next();
-
-                    if()
+                double firstDouble = Double.parseDouble(first); // Parsar till double
 
 
+                if(sc.hasNext()){ // Kollar om det finns ett till "ord"
 
+                    second = sc.next(); //Hämtar nästa ord
 
+                    if(second.equalsIgnoreCase("kg")||second.equalsIgnoreCase("kilo")){
 
-                    double res = pound(firstDouble);
+                        double res = poundCon(firstDouble);
 
-                    info.setText("Kg " + res);
+                        info.setText("Pounds: " + res);
 
-                    radioSet();
+                    }else if(second.equalsIgnoreCase("lb")||second.equalsIgnoreCase("pounds")){
+
+                        double res = kiloCon(firstDouble);
+
+                        info.setText("Kg: " + res);
+
+                    }
+
 
                 }else{
+
+                    double resPound = poundCon(firstDouble);
+                    double resKilo = kiloCon(firstDouble);
+
+                    info.setText(+ firstDouble + " Kg = " + df.format(resKilo) + " Pounds\n" +
+                             + firstDouble + " Pounds = " + df.format(resPound) + " Kg");
+
+
 
                 }
 
@@ -75,9 +91,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public double kiloCon(double vikt){
+
+        double res = vikt * 2.20462262;
 
 
-    public double pound(double vikt){
+        return res;
+
+
+    }
+
+
+    public double poundCon(double vikt){
 
         double res = vikt * 0.45359237;
 
@@ -88,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void radioSet(){
+    public void radioSet(){ // Används inte just nu..
 
         RadioButton r1 = (RadioButton) findViewById(R.id.radioButton3);
         RadioButton r2 = (RadioButton) findViewById(R.id.radioButton4);
