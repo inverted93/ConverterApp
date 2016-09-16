@@ -2,6 +2,7 @@ package hemmafix.converter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
@@ -30,19 +31,17 @@ public class MainActivity extends AppCompatActivity {
         String text = txtField.getText().toString();
 
         Scanner sc = new Scanner(text);
+        String radioResult = radioCheck();
 
-        radioSet();
+        if(radioResult.equals("Weight")){
+            weightConverter w1 = new weightConverter();
+            w1.weightConverter(sc, info);
 
+        }else if(radioResult.equals("Temp")){
+            tempConverter t1 = new tempConverter();
+            t1.tempConverterMethod(sc, info);
 
-        tempConverter t1 = new tempConverter();
-
-        t1.tempConverterMethod();
-
-
-        weightConverter w1 = new weightConverter();
-
-        w1.weightConverter(sc, info);
-
+        }
 
 
 
@@ -52,21 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-   /* public String tempConverter(Scanner sc){
-
-
-
-        return "";
-
-    }*/
-
-
-
-
-
-    public void radioSet(){ // Används inte just nu..
+    public String radioCheck(){ // Används inte just nu..
 
         RadioButton r1 = (RadioButton) findViewById(R.id.radioButton3);
         RadioButton r2 = (RadioButton) findViewById(R.id.radioButton4);
@@ -80,9 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(MainActivity.this,selectedButton.getText(), Toast.LENGTH_SHORT).show();
 
-        
 
-
+        return selectedButton.getText().toString();
 
 
 
