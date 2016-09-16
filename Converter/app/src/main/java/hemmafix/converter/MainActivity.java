@@ -31,58 +31,17 @@ public class MainActivity extends AppCompatActivity {
 
         Scanner sc = new Scanner(text);
 
-        String first="";
-        String second="";
-
-        DecimalFormat df = new DecimalFormat("#.###");
-
-        try{
+        radioSet();
 
 
-            if(sc.hasNext()){
+        tempConverter t1 = new tempConverter();
 
-                first = sc.next();//Hämtar det första talet
-
-                double firstDouble = Double.parseDouble(first); // Parsar till double
+        t1.tempConverterMethod();
 
 
-                if(sc.hasNext()){ // Kollar om det finns ett till "ord"
+        weightConverter w1 = new weightConverter();
 
-                    second = sc.next(); //Hämtar nästa ord
-
-                    if(second.equalsIgnoreCase("kg")||second.equalsIgnoreCase("kilo")){
-
-                        double res = poundCon(firstDouble);
-
-                        info.setText("Pounds: " + res);
-
-                    }else if(second.equalsIgnoreCase("lb")||second.equalsIgnoreCase("pounds")){
-
-                        double res = kiloCon(firstDouble);
-
-                        info.setText("Kg: " + res);
-
-                    }
-
-
-                }else{
-
-                    double resPound = poundCon(firstDouble);
-                    double resKilo = kiloCon(firstDouble);
-
-                    info.setText(+ firstDouble + " Kg = " + df.format(resKilo) + " Pounds\n" +
-                             + firstDouble + " Pounds = " + df.format(resPound) + " Kg");
-
-
-
-                }
-
-            }
-
-        }catch(NumberFormatException e){
-             e.printStackTrace();
-        }
-
+        w1.weightConverter(sc, info);
 
 
 
@@ -91,26 +50,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public double kiloCon(double vikt){
-
-        double res = vikt * 2.20462262;
 
 
-        return res;
 
 
-    }
+   /* public String tempConverter(Scanner sc){
 
 
-    public double poundCon(double vikt){
 
-        double res = vikt * 0.45359237;
+        return "";
 
-
-        return res;
+    }*/
 
 
-    }
+
 
 
     public void radioSet(){ // Används inte just nu..
@@ -126,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
         RadioButton selectedButton = (RadioButton) findViewById(selectedId);
 
         Toast.makeText(MainActivity.this,selectedButton.getText(), Toast.LENGTH_SHORT).show();
+
+        
+
 
 
 
